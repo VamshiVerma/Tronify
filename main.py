@@ -224,15 +224,7 @@ if selected == "Home":
             df = pd.read_excel(uploaded_file, engine='openpyxl')
             names = df['Name'].tolist()
 
-           """ contracts= df['Contract'].tolist()
-            m=0
-            for i in contracts:
 
-                recipient_address = i
-                amount = 1000000
-                k=send_tron(amount,recipient_address)
-                df.Contract.iloc[m] = k
-                m=m+1"""
             
             st.dataframe(df)
             for i in names:
