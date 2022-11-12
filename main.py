@@ -79,15 +79,13 @@ def process_file():
         names = df['Name'].tolist()
         contracts= df['Contract'].tolist()
         st.dataframe(df['Contract'])
-
-        d = []
-        for p in contracts():
-                recipient_address = i
-                amount = 1000000
-                k=send_tron(amount,recipient_address)
-                st.error(k)
-                d.append((k))
-
+        
+        recipient_address = df.iat[0, 1]
+        amount = 1000000
+        k=send_tron(amount,recipient_address)
+        st.error(k)
+        
+        
         block=pd.DataFrame(d, columns=('HashBlock'))
         st.dataframe(block)
         st.dataframe(df)
