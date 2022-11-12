@@ -251,9 +251,9 @@ if selected == "Home":
             sam.empty()
     
             st.text(k)
-            st.success('**Tron HashID **'+str(k['id']))
+            st.success('**Tron HashID: **'+str(k['id']))
             
-            
+
             st.dataframe(df)
             for i in names:
                 proof = block.get_previous_hash()
