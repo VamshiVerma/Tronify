@@ -131,6 +131,7 @@ def process_file():
                 except Exception as e:
                     pass
         st.subheader("Generated_Certificates_Table")
+        st.dataframe(df)
         st.dataframe(pd.DataFrame(table_values))
         shutil.make_archive('output/', 'zip', 'output/')
         with open("output.zip", "rb") as fp:
