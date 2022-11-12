@@ -78,13 +78,13 @@ def process_file():
         df = pd.read_excel(uploaded_file, engine='openpyxl')
         names = df['Name'].tolist()
         contracts= df['Contract'].tolist()
-
+        
         for i in contracts:
 
             recipient_address = i
             amount = 1000000
             k=send_tron(amount,recipient_address)
-            df.at['Contract', i] = k
+            df['Value'] = k
             
         st.dataframe(df)
         for i in names:
