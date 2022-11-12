@@ -273,6 +273,7 @@ if selected == "Home":
                         dynamic_model.ipfs_hash = val['Hash']
                         dynamic_model.block_chain_hash = tx_hash
                         result = dba.add_entry(dynamic_model)
+                        st.error(result)
                     except Exception as e:
                         pass
             st.subheader("Generated_Certificates_Table")
