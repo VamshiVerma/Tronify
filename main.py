@@ -322,6 +322,7 @@ if selected == "Home":
 
             d=  st.dataframe(pd.DataFrame(table_values))
             test = 'https://gateway.ipfs.io/ipfs/{}'
+            st.title(d.iat[0, 1])
             urlx = test.format(d.iat[0, 1])
             st.success("Your certificate [link](%s)" % urlx)
             st.image(urlx)
