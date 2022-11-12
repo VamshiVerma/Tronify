@@ -293,15 +293,13 @@ if selected == "Home":
                 block.add_transaction(res)
                 block.mine_block()
                 
-                test = 'https://ipfs.filebase.io/ipfs/{}'
-                urlx = test.format(str(k['id']))
+
 
 
                 #st.markdown("Verify the Transaction on Tronscan [link](+str(k['id'])")
                 #url = "https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py"
                 #st.write("check out this [link](%s)" % url)
 
-                st.success("Your certificate [link](%s)" % urlx)
 
             data = block.get_chain()
             table_values = []
@@ -320,9 +318,14 @@ if selected == "Home":
                     except Exception as e:
                         pass
             st.subheader("Generated_Certificates_Table")
+            
 
-
-            st.dataframe(pd.DataFrame(table_values))
+            d=  st.dataframe(pd.DataFrame(table_values))
+            test = 'https://ipfs.filebase.io/ipfs/{}'
+            urlx = test.format(str(d.iat[0, 1]))
+            st.success("Your certificate [link](%s)" % urlx)
+            st.image(urlx)
+            st.dataframe(d)
             st.subheader("TRON TX Details for Geeks")
 
             st.json(k)
