@@ -238,7 +238,7 @@ if selected == "Home":
             sam=st.empty()
             sam.markdown('**Connecting to Tron Network**')
             sam.markdown('**Initalizing the Transfer of funds**')
-            sam.markdown('**Transferring Tron Tokens to **',str(df.iat[0, 1]))
+            sam.markdown('**Transferring Tron Tokens to **'+str(df.iat[0, 1]))
 
             amount = 1000000
             k=send_tron(amount,recipient_address)
@@ -246,7 +246,7 @@ if selected == "Home":
             sam.empty()
     
             st.text(k)
-            st.success('**Tron HashID**',str(k['id']))
+            st.success('**Tron HashID**'+str(k['id']))
             
             
             st.dataframe(df)
