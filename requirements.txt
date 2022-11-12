@@ -1,0 +1,10 @@
+ipfs-api
+opencv-python-headless
+openpyxl==3.0.10
+pandas==1.4.0
+Pillow==9.2.0
+SQLAlchemy==1.4.31
+streamlit==1.4.0
+streamlit_option_menu==0.3.2
+tronpy
+git+https://github.com/nftstorage/python-client.git
