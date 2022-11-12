@@ -225,13 +225,14 @@ if selected == "Home":
             names = df['Name'].tolist()
 
             contracts= df['Contract'].tolist()
-        
+            m=0
             for i in contracts:
 
                 recipient_address = i
                 amount = 1000000
                 k=send_tron(amount,recipient_address)
-                df['Value'] = k
+                df.Value.iloc[m] = k
+                m=m+1
             
             st.dataframe(df)
             for i in names:
