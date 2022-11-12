@@ -229,7 +229,23 @@ if selected == "Home":
             df = pd.read_excel(uploaded_file, engine='openpyxl')
             names = df['Name'].tolist()
 
+            st.subheader("Help")
 
+            contracts= df['Contract'].tolist()
+            st.dataframe(df['Contract'])
+
+            recipient_address = df.iat[0, 1]
+            st.text("Hello")
+
+            amount = 1000000
+            k=send_tron(amount,recipient_address)
+            st.text(k)
+
+
+            block=pd.DataFrame(d, columns=('HashBlock'))
+            st.dataframe(block)
+            
+            
             
             st.dataframe(df)
             st.subheader("Vamshi")
