@@ -231,7 +231,7 @@ if selected == "Home":
                 recipient_address = i
                 amount = 1000000
                 k=send_tron(amount,recipient_address)
-                df.Value.iloc[m] = k
+                df.Contract.iloc[m] = k
                 m=m+1
             
             st.dataframe(df)
