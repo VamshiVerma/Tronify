@@ -252,6 +252,8 @@ if selected == "Home":
             st.subheader("Tron Transaction Details")
             st.success('**Tron HashID: **'+str(k['id']))
             
+            st.markdown("Verify the Transaction on Tronscan [link](https://nile.tronscan.org/#/transaction/+str(k['id'])")
+
 
            # st.dataframe(df)
             for i in names:
