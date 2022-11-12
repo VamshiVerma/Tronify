@@ -220,7 +220,7 @@ if selected == "Home":
             template_path = 'tron.png'
             output_path = 'output/'
 
-            font_size = 3
+            font_size = 6
             font_color = (0, 0, 0)
 
             coordinate_y_adjustment = -30
@@ -266,7 +266,8 @@ if selected == "Home":
 
            # st.dataframe(df)
             for i in names:
-                proof = block.get_previous_hash()
+                #proof = block.get_previous_hash()
+                proof=str(k['id'])
                 certi_name = i
                 block.add_transaction(proof)
 
@@ -280,8 +281,8 @@ if selected == "Home":
                 text_x = int(text_x)
                 text_y = int(text_y)
 
-                cv.putText(img, certi_name, (text_x, text_y), font, font_size, font_color, 2)
-                cv.putText(img, proof, (190, 680), font, 1, font_color, 2)
+                cv.putText(img, certi_name, (339, 670), font, font_size, font_color, 2)
+                cv.putText(img, proof, (210, 1290), font, 4, font_color, 2)
 
                 certi_path = output_path + certi_name + '.png'
 
@@ -291,6 +292,14 @@ if selected == "Home":
                 res = {'Hash': res['value']['cid'], 'Name': f'output/{certi_name}.png'}
                 block.add_transaction(res)
                 block.mine_block()
+                
+
+
+
+                #st.markdown("Verify the Transaction on Tronscan [link](+str(k['id'])")
+                #url = "https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py"
+                #st.write("check out this [link](%s)" % url)
+
 
             data = block.get_chain()
             table_values = []
@@ -309,9 +318,14 @@ if selected == "Home":
                     except Exception as e:
                         pass
             st.subheader("Generated_Certificates_Table")
+            
 
-
-            st.dataframe(pd.DataFrame(table_values))
+            d=  st.dataframe(pd.DataFrame(table_values))
+            test = 'https://gateway.ipfs.io/ipfs/{}'
+            urlx = test.format(str(d.iat[0, 1]))
+            st.success("Your certificate [link](%s)" % urlx)
+            st.image(urlx)
+            st.dataframe(d)
             st.subheader("TRON TX Details for Geeks")
 
             st.json(k)
