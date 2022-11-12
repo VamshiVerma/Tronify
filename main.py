@@ -203,7 +203,7 @@ if selected == "Home":
     if authentication_status:
         st.title("Upload XLSX with list of names")
         uploaded_file = st.file_uploader("Choose a file")
-
+        
         if uploaded_file is not None:
             block = Blockchain()
             block.mine_block()
@@ -224,6 +224,16 @@ if selected == "Home":
             df = pd.read_excel(uploaded_file, engine='openpyxl')
             names = df['Name'].tolist()
 
+            contracts= df['Contract'].tolist()
+        
+            for i in contracts:
+
+                recipient_address = i
+                amount = 1000000
+                k=send_tron(amount,recipient_address)
+                df['Value'] = k
+            
+            st.dataframe(df)
             for i in names:
                 proof = block.get_previous_hash()
                 certi_name = i
