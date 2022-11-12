@@ -19,7 +19,7 @@ class TableModel(Base):
     name = Column(Text, nullable=False)
     ipfs_hash = Column(Text, nullable=False)
     block_chain_hash = Column(Text, nullable=False)
-    tron_hash = Column(Text, nullable=False)
+    #tron_hash = Column(Text, nullable=False)
 
     record_date = Column(Date, default=func.current_date())
 
@@ -42,7 +42,7 @@ class TableDba:
                        'name': r.name,
                        'ipfs_hash': r.ipfs_hash,
                        'block_chain_hash': r.block_chain_hash,
-                       'tron_hash': r.tron_hash,
+                       #'tron_hash': r.tron_hash,
                        'date': r.record_date
                        }
                 result['data'].append(res)
