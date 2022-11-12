@@ -252,8 +252,17 @@ if selected == "Home":
             st.subheader("Tron Transaction Details")
             st.success('**Tron HashID: **'+str(k['id']))
             
-            st.markdown("Verify the Transaction on Tronscan [link](https://nile.tronscan.org/#/transaction/+str(k['id'])")
+            
+             # notice that this is a `set` and not a list
+            url_test = 'https://nile.tronscan.org/#/transaction/{}'
+            url = url_test.format(str(k['id']))
+            
+    
+            #st.markdown("Verify the Transaction on Tronscan [link](+str(k['id'])")
+            #url = "https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py"
+            #st.write("check out this [link](%s)" % url)
 
+            st.markdown("check out this [link](%s)" % url)
 
            # st.dataframe(df)
             for i in names:
