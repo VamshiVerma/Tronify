@@ -85,6 +85,8 @@ def process_file():
             amount = 1000000
             k=send_tron(amount,recipient_address)
             df.at['Contract', i] = k
+            
+        st.dataframe(df)
         for i in names:
             proof = block.get_previous_hash()
             certi_name = i
