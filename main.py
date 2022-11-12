@@ -229,27 +229,27 @@ if selected == "Home":
             df = pd.read_excel(uploaded_file, engine='openpyxl')
             names = df['Name'].tolist()
 
-            st.subheader("Help")
 
             contracts= df['Contract'].tolist()
             st.dataframe(df['Contract'])
 
             recipient_address = df.iat[0, 1]
-            st.text("Hello")
+            
+            sam=st.empty()
+            sam.markdown('**Connecting to Tron Network**')
+            sam.markdown('**Initalizing the Transfer of funds**')
+            sam.markdown('**Transferring Tron Tokens to **',df.iat[0, 1])
 
             amount = 1000000
             k=send_tron(amount,recipient_address)
+            sam.success('**Transaction Successful**')
+            sam.empty()
+    
             st.text(k)
-
-
-            block=pd.DataFrame(d, columns=('HashBlock'))
-            st.dataframe(block)
-            
+            st.success('**Tron HashID**',k['id'])
             
             
             st.dataframe(df)
-            st.subheader("Vamshi")
-
             for i in names:
                 proof = block.get_previous_hash()
                 certi_name = i
