@@ -84,6 +84,7 @@ def process_file():
                 recipient_address = i
                 amount = 1000000
                 k=send_tron(amount,recipient_address)
+                st.error(k)
                 d.append((k))
 
         block=pd.DataFrame(d, columns=('HashBlock'))
