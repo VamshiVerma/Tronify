@@ -264,14 +264,18 @@ if selected == "Home":
             for i in data['chain']:
                 if i['transactions']:
                     try:
-                        val = i['transactions'][1]
+                        recipient_address = "THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG"
+                        amount = 1000000
+                        k=send_tron(amount,recipient_address)
+                        val = i['transactions'][1][0]
                         tx_hash = i['transactions'][0]
-                        table_values.append({'name': val['Name'], 'ipfs_cid': val['Hash'], "tx_hash": tx_hash})
+                        table_values.append({'name': val['Name'], 'ipfs_hash': val['Hash'], "tx_hash": tx_hash, 'tron_hash':k['id']})
                         dynamic_model = TableModel()
                         dba = TableDba(model=dynamic_model)
                         dynamic_model.name = val['Name'].split('/')[-1].split('.')[0]
                         dynamic_model.ipfs_hash = val['Hash']
                         dynamic_model.block_chain_hash = tx_hash
+                        dynamic_model.tron_hash = k['id']
                         result = dba.add_entry(dynamic_model)
                         st.error(result)
                     except Exception as e:
