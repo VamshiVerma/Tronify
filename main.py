@@ -13,7 +13,7 @@ import cv2 as cv
 import ipfsApi
 import os
 import json
-
+import time
 authentication_status = True
 
 from tronpy import Tron
@@ -231,14 +231,19 @@ if selected == "Home":
 
 
             contracts= df['Contract'].tolist()
-            st.dataframe(df['Contract'])
+            #st.dataframe(df['Contract'])
 
             recipient_address = df.iat[0, 1]
             
             sam=st.empty()
+            
             sam.markdown('**Connecting to Tron Network**')
+            time.sleep(0.5)
             sam.markdown('**Initalizing the Transfer of funds**')
+            time.sleep(0.5)
+
             sam.markdown('**Transferring Tron Tokens to **'+str(df.iat[0, 1]))
+            time.sleep(0.5)
 
             amount = 1000000
             k=send_tron(amount,recipient_address)
