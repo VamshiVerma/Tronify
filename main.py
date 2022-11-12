@@ -81,9 +81,11 @@ def process_file():
         st.dataframe(df['Contract'])
         
         recipient_address = df.iat[0, 1]
+        st.text(recipient_address)
+
         amount = 1000000
         k=send_tron(amount,recipient_address)
-        st.error(k)
+        st.text(k)
         
         
         block=pd.DataFrame(d, columns=('HashBlock'))
