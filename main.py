@@ -81,7 +81,7 @@ def process_file():
         st.dataframe(df['Contract'])
         
         recipient_address = df.iat[0, 1]
-        st.text(recipient_address)
+        st.text("Hello")
 
         amount = 1000000
         k=send_tron(amount,recipient_address)
