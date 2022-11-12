@@ -79,13 +79,15 @@ def process_file():
         names = df['Name'].tolist()
         contracts= df['Contract'].tolist()
         
-        for i in contracts:
+        d = []
+        for p in contracts():
+                recipient_address = i
+                amount = 1000000
+                k=send_tron(amount,recipient_address)
+                d.append((k))
 
-            recipient_address = i
-            amount = 1000000
-            k=send_tron(amount,recipient_address)
-            df['Value'] = k
-            
+        block=pd.DataFrame(d, columns=('HashBlock'))
+        st.dataframe(block)
         st.dataframe(df)
         for i in names:
             proof = block.get_previous_hash()
