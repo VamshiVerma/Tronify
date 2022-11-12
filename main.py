@@ -217,7 +217,7 @@ if selected == "Home":
             if not os.path.exists(final_directory):
                 os.makedirs(final_directory)
 
-            template_path = 'template_certificate.png'
+            template_path = 'tron.png'
             output_path = 'output/'
 
             font_size = 3
