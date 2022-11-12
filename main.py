@@ -232,6 +232,8 @@ if selected == "Home":
 
             
             st.dataframe(df)
+            st.subheader("Vamshi")
+
             for i in names:
                 proof = block.get_previous_hash()
                 certi_name = i
@@ -276,6 +278,7 @@ if selected == "Home":
                     except Exception as e:
                         pass
             st.subheader("Generated_Certificates_Table")
+            
             st.dataframe(pd.DataFrame(table_values))
             shutil.make_archive('output/', 'zip', 'output/')
             with open("output.zip", "rb") as fp:
