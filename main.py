@@ -251,7 +251,7 @@ if selected == "Home":
             sam.empty()
             st.subheader("Tron Transaction Details")
 
-            st.json(k,collapse=True)
+            st.json(k,expanded=False)
             st.success('**Tron HashID: **'+str(k['id']))
             
 
