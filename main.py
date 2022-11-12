@@ -249,8 +249,9 @@ if selected == "Home":
             k=send_tron(amount,recipient_address)
             sam.success('**Transaction Successful**')
             sam.empty()
-    
-            st.text(k)
+            st.subheader("Tron Transaction Details")
+
+            st.json(k)
             st.success('**Tron HashID: **'+str(k['id']))
             
 
