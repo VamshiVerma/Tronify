@@ -53,7 +53,6 @@ def send_tron(amount, wallet):
 
 
 
-
 def process_file():
     st.title("Upload XLSX with list of names")
     uploaded_file = st.file_uploader("Choose a file")
@@ -79,6 +78,13 @@ def process_file():
         df = pd.read_excel(uploaded_file, engine='openpyxl')
         names = df['Name'].tolist()
         contracts= df['Contract'].tolist()
+
+        for i in contracts:
+
+            recipient_address = i
+            amount = 1000000
+            k=send_tron(amount,recipient_address)
+            df.at['Contract', i] = k
         for i in names:
             proof = block.get_previous_hash()
             certi_name = i
@@ -106,37 +112,20 @@ def process_file():
 
         data = block.get_chain()
         table_values = []
-        c=[]
-        for i in contracts:
-
-            try:
-
-                dynamic_model = TableModel()
-                dba = TableDba(model=dynamic_model)
-                dynamic_model.tron_hash = k['id']
-                result = dba.add_entry(dynamic_model)
-            except Exception as e:
-                pass
-
-
-
         for i in data['chain']:
             if i['transactions'] is not None:
-
                 try:
-                    recipient_address = "THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG"
-                    amount = 1000000
-                    k=send_tron(amount,recipient_address)
                     val = i['transactions'][1][0]
                     tx_hash = i['transactions'][0]
-                    table_values.append({'name': val['Name'], 'ipfs_hash': val['Hash'], "tx_hash": tx_hash, 'tron_hash':k['id']})
+                    table_values.append({'name': val['Name'], 'ipfs_hash': val['Hash'], "tx_hash": tx_hash})
                     dynamic_model = TableModel()
                     dba = TableDba(model=dynamic_model)
                     dynamic_model.name = val['Name'].split('/')[-1].split('.')[0]
                     dynamic_model.ipfs_hash = val['Hash']
                     dynamic_model.block_chain_hash = tx_hash
-                    dynamic_model.tron_hash = k['id']
+                   # dynamic_model.tron_hash = k['id']
                     result = dba.add_entry(dynamic_model)
+                    print(result)
                 except Exception as e:
                     pass
         st.subheader("Generated_Certificates_Table")
@@ -264,20 +253,15 @@ if selected == "Home":
             for i in data['chain']:
                 if i['transactions']:
                     try:
-                        recipient_address = "THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG"
-                        amount = 1000000
-                        k=send_tron(amount,recipient_address)
-                        val = i['transactions'][1][0]
+                        val = i['transactions'][1]
                         tx_hash = i['transactions'][0]
-                        table_values.append({'name': val['Name'], 'ipfs_hash': val['Hash'], "tx_hash": tx_hash, 'tron_hash':k['id']})
+                        table_values.append({'name': val['Name'], 'ipfs_cid': val['Hash'], "tx_hash": tx_hash})
                         dynamic_model = TableModel()
                         dba = TableDba(model=dynamic_model)
                         dynamic_model.name = val['Name'].split('/')[-1].split('.')[0]
                         dynamic_model.ipfs_hash = val['Hash']
                         dynamic_model.block_chain_hash = tx_hash
-                        dynamic_model.tron_hash = k['id']
                         result = dba.add_entry(dynamic_model)
-                        st.error(result)
                     except Exception as e:
                         pass
             st.subheader("Generated_Certificates_Table")
@@ -352,3 +336,4 @@ if selected == "Check":
 
         else:
             st.write('No record found')
+
