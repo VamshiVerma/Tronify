@@ -262,7 +262,7 @@ if selected == "Home":
             #url = "https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py"
             #st.write("check out this [link](%s)" % url)
 
-            st.markdown("check out this [link](%s)" % url)
+            st.success("Verify the Transaction on Tronscan (%s)" % url)
 
            # st.dataframe(df)
             for i in names:
