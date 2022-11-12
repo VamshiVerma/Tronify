@@ -74,6 +74,7 @@ def process_file():
 
         coordinate_y_adjustment = -30
         coordinate_x_adjustment = 10
+        st.subheader("fedup")
 
         df = pd.read_excel(uploaded_file, engine='openpyxl')
         names = df['Name'].tolist()
