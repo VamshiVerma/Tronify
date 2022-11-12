@@ -78,7 +78,7 @@ def process_file():
         df = pd.read_excel(uploaded_file, engine='openpyxl')
         names = df['Name'].tolist()
         contracts= df['Contract'].tolist()
-        st.dataframe(names)
+        st.dataframe(df['Contract'])
 
         d = []
         for p in contracts():
