@@ -250,11 +250,10 @@ if selected == "Home":
             sam.success('**Transaction Successful**')
             sam.empty()
             st.subheader("Tron Transaction Details")
-            st.json(k)
             st.success('**Tron HashID: **'+str(k['id']))
             
 
-            st.dataframe(df)
+           # st.dataframe(df)
             for i in names:
                 proof = block.get_previous_hash()
                 certi_name = i
@@ -299,8 +298,12 @@ if selected == "Home":
                     except Exception as e:
                         pass
             st.subheader("Generated_Certificates_Table")
-            
+
+
             st.dataframe(pd.DataFrame(table_values))
+            st.subheader("TRON TX Details for Geeks")
+
+            st.json(k)
             shutil.make_archive('output/', 'zip', 'output/')
             with open("output.zip", "rb") as fp:
                 btn = st.download_button(
