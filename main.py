@@ -75,108 +75,6 @@ def send_tron(amount, wallet):
 
 
 
-def process_file():
-    st.title("Upload XLSX with list of names")
-    uploaded_file = st.file_uploader("Choose a file")
-
-    if uploaded_file is not None:
-        api = ipfsapi.Client(host='https://ipfs.infura.io', port=5001)
-        block = Blockchain()
-        block.mine_block()
-        current_directory = os.getcwd()
-        final_directory = os.path.join(current_directory, r'output')
-        if not os.path.exists(final_directory):
-            os.makedirs(final_directory)
-
-        template_path = 'template_certificate.png'
-        output_path = 'output/'
-
-        font_size = 3
-        font_color = (0, 0, 0)
-
-        coordinate_y_adjustment = -30
-        coordinate_x_adjustment = 10
-        st.subheader("fedup")
-
-        df = pd.read_excel(uploaded_file, engine='openpyxl')
-        names = df['Name'].tolist()
-        contracts= df['Contract'].tolist()
-        st.dataframe(df['Contract'])
-        
-        recipient_address = df.iat[0, 1]
-        st.text("Hello")
-
-        amount = 1000000
-        k=send_tron(amount,recipient_address)
-        st.text(k)
-        
-        
-        block=pd.DataFrame(d, columns=('HashBlock'))
-        st.dataframe(block)
-        st.dataframe(df)
-        for i in names:
-            proof = block.get_previous_hash()
-            certi_name = i
-            block.add_transaction(proof)
-
-            img = cv.imread(template_path)
-
-            font = cv.FONT_HERSHEY_PLAIN
-
-            text_size = cv.getTextSize(certi_name, font, font_size, 10)[0]
-            text_x = (img.shape[1] - text_size[0]) / 2 + coordinate_x_adjustment
-            text_y = (img.shape[0] + text_size[1]) / 2 - coordinate_y_adjustment
-            text_x = int(text_x)
-            text_y = int(text_y)
-
-            cv.putText(img, certi_name, (text_x, text_y), font, font_size, font_color, 2)
-            cv.putText(img, proof, (190, 680), font, 1, font_color, 2)
-
-            certi_path = output_path + certi_name + '.png'
-
-            status = cv.imwrite(f'output/{certi_name}.png', img)
-            res = ipfs.ipfs_add(f'output/{certi_name}.png')
-            block.add_transaction(res)
-            block.mine_block()
-
-        data = block.get_chain()
-        table_values = []
-        for i in data['chain']:
-            if i['transactions'] is not None:
-                try:
-                    val = i['transactions'][1][0]
-                    tx_hash = i['transactions'][0]
-                    table_values.append({'name': val['Name'], 'ipfs_hash': val['Hash'], "tx_hash": tx_hash})
-                    dynamic_model = TableModel()
-                    dba = TableDba(model=dynamic_model)
-                    dynamic_model.name = val['Name'].split('/')[-1].split('.')[0]
-                    dynamic_model.ipfs_hash = val['Hash']
-                    dynamic_model.block_chain_hash = tx_hash
-                   # dynamic_model.tron_hash = k['id']
-                    result = dba.add_entry(dynamic_model)
-                    print(result)
-                except Exception as e:
-                    pass
-        st.subheader("Generated_Certificates_Table")
-        st.dataframe(df)
-        st.dataframe(pd.DataFrame(table_values))
-        shutil.make_archive('output/', 'zip', 'output/')
-        with open("output.zip", "rb") as fp:
-            btn = st.download_button(
-                label="Download ZIP",
-                data=fp,
-                file_name="output.zip",
-                mime="application/zip"
-            )
-
-        dir = 'output/'
-        for f in os.listdir(dir):
-            os.remove(os.path.join(dir, f))
-    if st.button('clear all data'):
-        dynamic_model = TableModel()
-        dba = TableDba(model=dynamic_model)
-        ret = dba.delete_all()
-        st.write('Database clear now')
 
 
 # 1. as sidebar menu
@@ -223,12 +121,7 @@ def authentication():
                 authentication_status = True
             else:
                 authentication_status = False
-    
-
-
-st.success(submit_button)
-st.success(button)
-
+ 
     
 
     
@@ -404,35 +297,4 @@ if selected == "Check":
         dba = TableDba(model=dynamic_model)
         ret = dba.get(name=name, record_date=record_date)
         record = ret.get('data')
-        if len(record):
-            ipfs_url = ipfs.ipfs_get(record)
-            if wallet_address:
-                st.success("Minting the NFT")
-
-                import requests
-
-                url = "https://api.nftport.xyz/v0/mints/easy/urls"
-
-                payload = {
-                    "chain": "goerli",
-                    "name": "ERC-721 NFT",
-                    "description": "NFT",
-                    "file_url": ipfs_url,
-                    "mint_to_address": wallet_address
-                }
-                headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": "f3808be1-e81b-4d7f-942d-7969b074ec0b"
-                }
-
-                response = requests.request("POST", url, json=payload, headers=headers)
-
-                print(response.text)
-                st.json(response.text)
-
-                
-                #st.write(f'transaction_external_url')
-
-
-        else:
-            st.write('No record found')
+       
