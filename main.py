@@ -236,7 +236,7 @@ if selected == "Home":
         st.title("Upload XLSX with list of names")
         uploaded_file = st.file_uploader("Choose a file")
         
-        if uploaded_file is not None:
+        if uploaded_file is not None or (submit_button and button):
             block = Blockchain()
             block.mine_block()
             current_directory = os.getcwd()
@@ -252,9 +252,15 @@ if selected == "Home":
 
             coordinate_y_adjustment = -30
             coordinate_x_adjustment = 10
-
-            df = pd.read_excel(uploaded_file, engine='openpyxl')
-            names = df['Name'].tolist()
+	    
+	    
+            if(submit_button and button):
+                COLUMN_NAMES=['Name','Contract']
+                df = pd.DataFrame(columns=COLUMN_NAMES)
+                df.loc[len(df.index)] = [nm,cx]             
+            else:
+                df = pd.read_excel(uploaded_file, engine='openpyxl')
+	    names = df['Name'].tolist()
 
 
             contracts= df['Contract'].tolist()
