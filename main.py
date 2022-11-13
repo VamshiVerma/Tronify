@@ -254,9 +254,11 @@ if selected == "Input":
             
                 d=  st.dataframe(pd.DataFrame(table_values))
                 test = 'https://gateway.ipfs.io/ipfs/{}'
-                st.text(table_values[0]['ipfs_cid'])
+                um=table_values[0]['ipfs_cid']
             # df.loc[0, 'ipfs_cid']
-                
+                fin = 'https://gateway.ipfs.io/ipfs/{}'
+                final = fin.format(um)
+		st.text(final)
                 #st.title(d.iat[0, 1])
                 #urlx = test.format(d.iat[0, 1])
                 #st.success("Your certificate [link](%s)" % urlx)
