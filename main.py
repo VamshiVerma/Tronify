@@ -132,7 +132,7 @@ if selected == "Input":
         block = Blockchain()
         block.mine_block()
         l.empty()
-        if uploaded_file is not None or (nm is not None and cx is not None):
+        if uploaded_file is not None :
             current_directory = os.getcwd()
             final_directory = os.path.join(current_directory, r'output')
             if not os.path.exists(final_directory):
