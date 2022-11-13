@@ -322,7 +322,8 @@ if selected == "Verify":
     name = st.text_input('Enter the Name')
     record_date = st.date_input('Select Date')
     wallet_address = None
-
+    if st.checkbox('MINT AS NFT'):
+        wallet_address = st.text_area('Wallet Address')
 
     if st.button('search'):
         dynamic_model = TableModel()
