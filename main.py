@@ -78,8 +78,10 @@ def send_tron(amount, wallet):
 
 
 # 1. as sidebar menu
+l=st.empty()
+l.success("Please Enter Input from Sidebar and Click Input Tab")
 
-selected = option_menu("Certificate Validation", ["Home", 'Check'],
+selected = option_menu("TRONIFY: Authentic Certificate Generator", ["Input", 'Verify'],
                        icons=['house', 'gear'], menu_icon="cast", default_index=1, orientation="horizontal")
 create_db()
 acc_dba = AccountDba()
@@ -125,14 +127,14 @@ def authentication():
     
 
     
-if selected == "Home":
+if selected == "Input":
     # authentication_status = authentication()
     if authentication_status:
         st.title("Upload XLSX with list of names")
         uploaded_file = st.file_uploader("Choose a file")
         block = Blockchain()
         block.mine_block()
-        
+        l.empty()
         if uploaded_file is not None or (nm is not None and cx is not None):
             current_directory = os.getcwd()
             final_directory = os.path.join(current_directory, r'output')
@@ -286,7 +288,7 @@ if selected == "Home":
         st.warning('Please enter your username and password')
     # if st.button('Logout'):
     #     st.session_state.authentication_status = False
-if selected == "Check":
+if selected == "Verify":
     name = st.text_input('Enter the Name')
     record_date = st.date_input('Select Date')
     wallet_address = None
