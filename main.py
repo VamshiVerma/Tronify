@@ -132,8 +132,7 @@ if selected == "Input":
         block = Blockchain()
         block.mine_block()
         
-        if uploaded_file is not None or (nm is not None and cx is not None):
-            st.success(submit_button+button)
+        if uploaded_file is not None :
             current_directory = os.getcwd()
             final_directory = os.path.join(current_directory, r'output')
             if not os.path.exists(final_directory):
@@ -154,8 +153,8 @@ if selected == "Input":
                 COLUMN_NAMES=['Name','Contract']
                 df = pd.DataFrame(columns=COLUMN_NAMES)
                 df.loc[len(df.index)] = [nm,cx]             
-            else:
-                df = pd.read_excel(uploaded_file, engine='openpyxl')
+            
+            df = pd.read_excel(uploaded_file, engine='openpyxl')
 	        
             contracts= df['Contract'].tolist()
             names = df['Name'].tolist()
