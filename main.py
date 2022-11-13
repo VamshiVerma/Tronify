@@ -74,8 +74,7 @@ def send_tron(amount, wallet):
         return ex
 
 
-final=""
-
+global final
 
 # 1. as sidebar menu
 l=st.empty()
@@ -293,7 +292,6 @@ if selected == "Input":
     # if st.button('Logout'):
     #     st.session_state.authentication_status = False
 if selected == "Verify":
-    global final
     st.text(final)
     name = st.text_input('Enter the Name')
     record_date = st.date_input('Select Date')
