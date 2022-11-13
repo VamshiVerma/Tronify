@@ -45,10 +45,7 @@ with st.sidebar.expander('Example Input'):
 
 	
 	
-if submit_button:
-	st.header(nm)
-if button:
-	ct.header(cx)
+
 fontFace=cv.FONT_HERSHEY_SCRIPT_COMPLEX
 	
 	
