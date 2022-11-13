@@ -133,7 +133,7 @@ if selected == "Home":
         block = Blockchain()
         block.mine_block()
         
-        if uploaded_file is not None or (nm is not None and cx is not None):
+        if uploaded_file is not None and (nm is not None and cx is not None):
             st.success(submit_button+button)
             current_directory = os.getcwd()
             final_directory = os.path.join(current_directory, r'output')
