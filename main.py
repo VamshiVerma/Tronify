@@ -309,7 +309,7 @@ if selected == "Home":
                 text_y = int(text_y)
 
                 cv.putText(img, certi_name, (339, 700), fontFace, font_size, font_color, 2)
-                cv.putText(img, proof, (180, 1300), font, 1.5, font_color, 2)
+                cv.putText(img, proof, (180, 1320), font, 1.7, font_color, 2)
 
                 certi_path = output_path + certi_name + '.png'
 
