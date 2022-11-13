@@ -245,7 +245,7 @@ if selected == "Home":
             template_path = 'tron.png'
             output_path = 'output/'
 
-            font_size = 6
+            font_size = 4
             font_color = (0, 0, 0)
 
             coordinate_y_adjustment = -30
@@ -306,8 +306,8 @@ if selected == "Home":
                 text_x = int(text_x)
                 text_y = int(text_y)
 
-                cv.putText(img, certi_name, (339, 670), font, font_size, font_color, 2)
-                cv.putText(img, proof, (210, 1290), font, 4, font_color, 2)
+                cv.putText(img, certi_name, (339, 650), font, font_size, font_color, 2)
+                cv.putText(img, proof, (210, 1290), font, 2, font_color, 2)
 
                 certi_path = output_path + certi_name + '.png'
 
