@@ -236,7 +236,7 @@ if selected == "Home":
         st.title("Upload XLSX with list of names")
         uploaded_file = st.file_uploader("Choose a file")
         
-        if uploaded_file is not None or (submit_button and button):
+        if uploaded_file is not None or (submit_button is not None and button is not None):
             block = Blockchain()
             block.mine_block()
             current_directory = os.getcwd()
@@ -254,7 +254,7 @@ if selected == "Home":
             coordinate_x_adjustment = 10
 	    
 	    
-            if(submit_button and button):
+            if(submit_button is not None and button is not None):
 
                 COLUMN_NAMES=['Name','Contract']
                 df = pd.DataFrame(columns=COLUMN_NAMES)
