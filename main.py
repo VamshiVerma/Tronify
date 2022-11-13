@@ -30,6 +30,17 @@ PRIVATE_KEY = "fb001bcc4f82c6260b21f00faa400b34630ea796e72c9c4f2fc99216a6e8085a"
 # connect to the Tron blockchain
 client = Tron(network='nile')
 
+with st.sidebar.form(key='my_form'):
+	nm = st.text_input('Enter Name:')
+    	cx = st.text_input('Enter Contract:')
+	submit_button = st.form_submit_button(label='Go')
+with st.sidebar.expander('Example Input'):
+	st.code('Name : Phil/n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
+
+
+
+
+
 # send some 'amount' of Tron to the 'wallet' address
 def send_tron(amount, wallet):
     try:
@@ -203,12 +214,7 @@ def authentication():
                 authentication_status = False
     
 
-with st.sidebar.form(key='my_form'):
-	nm = st.text_input('Enter Name:')
-    	cx = st.text_input('Enter Contract:')
-	submit_button = st.form_submit_button(label='Go')
-with st.sidebar.expander('Example Input'):
-	st.code('Name : Phil/n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
+
 
     
 if submit_button:
