@@ -156,6 +156,7 @@ if selected == "Home":
                 df.loc[len(df.index)] = [nm,cx]             
             else:
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
+            st.dataframe(df)
 
             if(df.size>1):
                 st.header(df.size)
