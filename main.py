@@ -34,11 +34,10 @@ client = Tron(network='nile')
 
 with st.sidebar.form(key='my_form'):
 	nm = st.text_input('Enter Name:')
-    	#cx = st.text_input('Enter Contract:')
-	submit_button = st.form_submit_button(label='Go')
-with ct.sidebar.form(key='my_form2'):
     	cx = ct.text_input('Enter Contract:')
-	submit_button2 = ct.form_submit_button(label='Go')
+	submit_button = st.form_submit_button(label='Go')
+	submit_button2 = cx.form_submit_button(label='Go')
+
 with st.sidebar.expander('Example Input'):
 	st.code('Name : Phil\n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
 
