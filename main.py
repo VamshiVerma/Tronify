@@ -123,9 +123,9 @@ def authentication():
                 authentication_status = False
  
     
-st.success(nm)
+
     
-if selected == "Home"  and (nm is not None and cx is not None):
+if selected == "Home":
     # authentication_status = authentication()
     if authentication_status:
         st.title("Upload XLSX with list of names")
@@ -134,6 +134,7 @@ if selected == "Home"  and (nm is not None and cx is not None):
         block.mine_block()
         
         if uploaded_file is not None or (nm is not None and cx is not None):
+            st.success(submit_button+button)
             current_directory = os.getcwd()
             final_directory = os.path.join(current_directory, r'output')
             if not os.path.exists(final_directory):
@@ -296,6 +297,7 @@ if selected == "Check":
         dba = TableDba(model=dynamic_model)
         ret = dba.get(name=name, record_date=record_date)
         record = ret.get('data')
+        st.success("Here I'm")
         if len(record):
                 ipfs_url = ipfs.ipfs_get(record)
                 if wallet_address:
@@ -321,12 +323,9 @@ if selected == "Check":
 
                     print(response.text)
                     st.json(response.text)
-                    st.success("Here Im")
 
                     
                     #st.write(f'transaction_external_url')
 
         else:
             st.write('No record found')
-
-
