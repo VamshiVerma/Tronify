@@ -297,36 +297,35 @@ if selected == "Check":
         dba = TableDba(model=dynamic_model)
         ret = dba.get(name=name, record_date=record_date)
         record = ret.get('data')
-       
- 	if len(record):
-            ipfs_url = ipfs.ipfs_get(record)
-            if wallet_address:
-                st.success("Minting the NFT")
+        st.success("Here I'm")
+        if len(record):
+                ipfs_url = ipfs.ipfs_get(record)
+                if wallet_address:
+                    st.success("Minting the NFT")
 
-                import requests
+                    import requests
 
-                url = "https://api.nftport.xyz/v0/mints/easy/urls"
+                    url = "https://api.nftport.xyz/v0/mints/easy/urls"
 
-                payload = {
-                    "chain": "goerli",
-                    "name": "ERC-721 NFT",
-                    "description": "NFT",
-                    "file_url": ipfs_url,
-                    "mint_to_address": wallet_address
-                }
-                headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": "f3808be1-e81b-4d7f-942d-7969b074ec0b"
-                }
+                    payload = {
+                        "chain": "goerli",
+                        "name": "ERC-721 NFT",
+                        "description": "NFT",
+                        "file_url": ipfs_url,
+                        "mint_to_address": wallet_address
+                    }
+                    headers = {
+                        "Content-Type": "application/json",
+                        "Authorization": "f3808be1-e81b-4d7f-942d-7969b074ec0b"
+                    }
 
-                response = requests.request("POST", url, json=payload, headers=headers)
+                    response = requests.request("POST", url, json=payload, headers=headers)
 
-                print(response.text)
-                st.json(response.text)
+                    print(response.text)
+                    st.json(response.text)
 
-                
-                #st.write(f'transaction_external_url')
-
+                    
+                    #st.write(f'transaction_external_url')
 
         else:
             st.write('No record found')
