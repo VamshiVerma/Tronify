@@ -205,7 +205,7 @@ def authentication():
 
 with st.sidebar.form(key='my_form'):
 	nm = st.text_input('Enter Name:')
-    cx = st.text_input('Enter Contract:')
+    	cx = st.text_input('Enter Contract:')
 	submit_button = st.form_submit_button(label='Go')
 with st.sidebar.expander('Example Input'):
 	st.code('Name : Phil/n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
