@@ -127,7 +127,7 @@ def authentication():
     
 if selected == "Home":
     # authentication_status = authentication()
-    if authentication_status:
+    if authentication_status and (nm is not None and cx is not None):
         st.title("Upload XLSX with list of names")
         uploaded_file = st.file_uploader("Choose a file")
         block = Blockchain()
@@ -321,11 +321,11 @@ if selected == "Check":
 
                     print(response.text)
                     st.json(response.text)
-
+		    st.success("Here I'm")
                     
                     #st.write(f'transaction_external_url')
 
         else:
             st.write('No record found')
-st.success("Here I'm")
+
 
