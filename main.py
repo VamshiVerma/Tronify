@@ -156,8 +156,8 @@ if selected == "Home":
                 df.loc[len(df.index)] = [nm,cx]             
             else:
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
-	    
-	    st.header(df.size)
+	        
+            st.header(df.size)
             contracts= df['Contract'].tolist()
             names = df['Name'].tolist()
             #st.dataframe(df['Contract'])
