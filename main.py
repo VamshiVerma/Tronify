@@ -123,11 +123,11 @@ def authentication():
                 authentication_status = False
  
     
-
+st.success(nm)
     
-if selected == "Home":
+if selected == "Home"  and (nm is not None and cx is not None):
     # authentication_status = authentication()
-    if authentication_status and (nm is not None and cx is not None):
+    if authentication_status:
         st.title("Upload XLSX with list of names")
         uploaded_file = st.file_uploader("Choose a file")
         block = Blockchain()
