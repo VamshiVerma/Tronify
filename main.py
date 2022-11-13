@@ -158,7 +158,7 @@ if selected == "Home":
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
             st.header(df.iloc[0,0])
 
-            if(df.iloc[0,0] is not None):
+            if(!(df.iloc[0,0] == null || df.iloc[0,0].isEmpty() || df.iloc[0,0].trim().isEmpty())):
                 st.header(df.size)
                 contracts= df['Contract'].tolist()
                 names = df['Name'].tolist()
