@@ -49,7 +49,7 @@ if submit_button:
 	st.header(nm)
 if button:
 	ct.header(cx)
-fontFace=cv2.FONT_HERSHEY_SCRIPT_COMPLEX
+fontFace=cv.FONT_HERSHEY_SCRIPT_COMPLEX
 	
 	
 # send some 'amount' of Tron to the 'wallet' address
