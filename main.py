@@ -34,8 +34,11 @@ with st.sidebar.form(key='my_form'):
 	nm = st.text_input('Enter Name:')
     	#cx = st.text_input('Enter Contract:')
 	submit_button = st.form_submit_button(label='Go')
+with st.sidebar.form(key='my_form2'):
+    	cx = st.text_input('Enter Contract:')
+	submit_button2 = st.form_submit_button(label='Go')
 with st.sidebar.expander('Example Input'):
-	st.code('Name : Phil/n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
+	st.code('Name : Phil\n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
 
 
 
@@ -217,9 +220,9 @@ def authentication():
 
 
     
-if submit_button:
-    st.header(nm)
-    st.header(cx)
+if submit_button and submit_button2:
+	st.header(nm)
+	st.header(cx)
     
 if selected == "Home":
     # authentication_status = authentication()
