@@ -250,7 +250,6 @@ if selected == "Input":
                             pass
                 st.subheader("Generated_Certificates_Table")
                 
-            	global final
                 d=  st.dataframe(pd.DataFrame(table_values))
                 test = 'https://gateway.ipfs.io/ipfs/{}'
                 um=table_values[0]['ipfs_cid']
