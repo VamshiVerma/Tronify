@@ -255,15 +255,15 @@ if selected == "Home":
 	    
 	    
             if(submit_button and button):
+
                 COLUMN_NAMES=['Name','Contract']
                 df = pd.DataFrame(columns=COLUMN_NAMES)
                 df.loc[len(df.index)] = [nm,cx]             
             else:
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
-	    names = df['Name'].tolist()
-
-
+	        
             contracts= df['Contract'].tolist()
+            names = df['Name'].tolist()
             #st.dataframe(df['Contract'])
 
             recipient_address = df.iat[0, 1]
