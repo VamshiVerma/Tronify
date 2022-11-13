@@ -293,7 +293,7 @@ if selected == "Input":
     # if st.button('Logout'):
     #     st.session_state.authentication_status = False
 if selected == "Verify":
-    st.text(final)
+    st.text(um+d)
     name = st.text_input('Enter the Name')
     record_date = st.date_input('Select Date')
     wallet_address = None
