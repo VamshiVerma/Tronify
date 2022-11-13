@@ -34,11 +34,11 @@ client = Tron(network='nile')
 
 with st.sidebar.form(key='my_form'):
 	nm = st.text_input('Enter Name:')
-	submit_button = st.form_submit_button(label='Go')
+	submit_button = st.form_submit_button(label='Save 1')
 
 with st.sidebar.form(key='new'):
 	cx = ct.text_input('Enter Contract:')
-	button = ct.form_submit_button(label='Hit')
+	button = ct.form_submit_button(label='Save 2')
 	
 with st.sidebar.expander('Example Input'):
 	st.code('Name : Phil\n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
@@ -300,7 +300,7 @@ if selected == "Verify":
         dba = TableDba(model=dynamic_model)
         ret = dba.get(name=name, record_date=record_date)
         record = ret.get('data')
-        st.success("Here I'm")
+        st.success("Tron Verified Certificate Successfuly Generated")
         if len(record):
                 ipfs_url = ipfs.ipfs_get(record)
                 if wallet_address:
