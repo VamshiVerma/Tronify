@@ -201,8 +201,20 @@ def authentication():
                 authentication_status = True
             else:
                 authentication_status = False
+    
 
+with st.sidebar.form(key='my_form'):
+	nm = st.text_input('Enter Name:')
+    cx = st.text_input('Enter Contract:')
+	submit_button = st.form_submit_button(label='Go')
+with st.sidebar.expander('Example Input'):
+	st.code('Name : Phil/n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
 
+    
+if submit_button:
+    st.header(nm)
+    st.header(cx)
+    
 if selected == "Home":
     # authentication_status = authentication()
     if authentication_status:
@@ -319,16 +331,16 @@ if selected == "Home":
                         pass
             st.subheader("Generated_Certificates_Table")
             
-
+           
             d=  st.dataframe(pd.DataFrame(table_values))
             test = 'https://gateway.ipfs.io/ipfs/{}'
             
-            df.loc[0, 'ipfs_cid']
+           # df.loc[0, 'ipfs_cid']
             
-            st.title(d.iat[0, 1])
-            urlx = test.format(d.iat[0, 1])
-            st.success("Your certificate [link](%s)" % urlx)
-            st.image(urlx)
+            #st.title(d.iat[0, 1])
+            #urlx = test.format(d.iat[0, 1])
+            #st.success("Your certificate [link](%s)" % urlx)
+            #st.image(urlx)
             st.dataframe(d)
             st.subheader("TRON TX Details for Geeks")
 
