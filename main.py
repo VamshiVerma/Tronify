@@ -39,7 +39,9 @@ with st.sidebar.form(key='my_form'):
 with st.sidebar.expander('Example Input'):
 	st.code('Name : Phil\n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
 
-
+with st.sidebar.form(key='new'):
+	cx = ct.text_input('Enter Contract:')
+	button = ct.form_submit_button(label='Hit')
 
 
 # send some 'amount' of Tron to the 'wallet' address
@@ -218,7 +220,7 @@ def authentication():
 
 
     
-if submit_button:
+if submit_button and button:
 	
 	st.header(nm)
 	st.header(cx)
