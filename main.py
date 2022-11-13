@@ -254,7 +254,7 @@ if selected == "Input":
             
                 d=  st.dataframe(pd.DataFrame(table_values))
                 test = 'https://gateway.ipfs.io/ipfs/{}'
-                st.text(df.iat[0, 1])
+                st.text(table_values)
             # df.loc[0, 'ipfs_cid']
                 
                 #st.title(d.iat[0, 1])
