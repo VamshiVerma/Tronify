@@ -49,6 +49,8 @@ if submit_button:
 	st.header(nm)
 if button:
 	ct.header(cx)
+fontFace=cv2.FONT_HERSHEY_SCRIPT_COMPLEX
+	
 	
 # send some 'amount' of Tron to the 'wallet' address
 def send_tron(amount, wallet):
@@ -307,7 +309,7 @@ if selected == "Home":
                 text_x = int(text_x)
                 text_y = int(text_y)
 
-                cv.putText(img, certi_name, (339, 700), font2, font_size, font_color, 2)
+                cv.putText(img, certi_name, (339, 700), fontFace, font_size, font_color, 2)
                 cv.putText(img, proof, (200, 1290), font, 2, font_color, 2)
 
                 certi_path = output_path + certi_name + '.png'
