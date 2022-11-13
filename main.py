@@ -389,7 +389,6 @@ if selected == "Home":
         st.warning('Please enter your username and password')
     # if st.button('Logout'):
     #     st.session_state.authentication_status = False
-
 if selected == "Check":
     name = st.text_input('Enter the Name')
     record_date = st.date_input('Select Date')
@@ -405,34 +404,32 @@ if selected == "Check":
         if len(record):
             ipfs_url = ipfs.ipfs_get(record)
             if wallet_address:
-                res_data = ipfs.nft_port_minting(record, wallet_address, ipfs_url)
-                if res_data:
-                    file = 'tmp/{}.png'.format(record[0].get('ipfs_hash'))
-                    store_nft = ipfs.nft_storage_store(file)
-                    st.subheader("Retrive Stored image Data from NFT Storage")
-                    st.write(store_nft)
-                    st.markdown("#")
-                    st.subheader("Minted Image")
-                    image_cid = store_nft['value']['cid']
-                    st.write(f'https://{image_cid}.ipfs.nftstorage.link/')
-                    if store_nft:
-                        meta_file = 'tmp/temp_{}.json'.format(image_cid)
-                        with open(meta_file,'w+') as f:
-                            json.dump(res_data,f)
-                        nft_meta = ipfs.nft_storage_store(meta_file)
-                        st.markdown("#")
-                        st.subheader("Retrive Stored Meta Data from NFT Storage")
-                        retrive_data = ipfs.get_nft_storage(nft_meta['value']['cid'])
-                        st.success(retrive_data)
-                        meta_cid = retrive_data['value']['cid']
-                        st.markdown("#")
-                        st.write(f'https://{meta_cid}.ipfs.nftstorage.link/')
-                        meta_d = requests.get(url=f'https://{meta_cid}.ipfs.nftstorage.link/')
-                        temp = json.loads(meta_d.content.decode('utf-8'))
-                        new_dict = {key: val for key,
-                                                 val in temp.items() if
-                                    key not in ['name', 'description', 'file_url', 'response']}
-                        st.json(new_dict)
+                st.success("Minting the NFT")
+
+                import requests
+
+                url = "https://api.nftport.xyz/v0/mints/easy/urls"
+
+                payload = {
+                    "chain": "goerli",
+                    "name": "ERC-721 NFT",
+                    "description": "NFT",
+                    "file_url": ipfs_url,
+                    "mint_to_address": wallet_address
+                }
+                headers = {
+                    "Content-Type": "application/json",
+                    "Authorization": "f3808be1-e81b-4d7f-942d-7969b074ec0b"
+                }
+
+                response = requests.request("POST", url, json=payload, headers=headers)
+
+                print(response.text)
+                st.json(response.text)
+
+                
+                #st.write(f'transaction_external_url')
+
 
         else:
             st.write('No record found')
