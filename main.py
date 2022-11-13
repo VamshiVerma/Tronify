@@ -131,8 +131,9 @@ if selected == "Input":
         uploaded_file = st.file_uploader("Choose a file")
         block = Blockchain()
         block.mine_block()
-        l.empty()
-        if uploaded_file is not None :
+        
+        if uploaded_file is not None or (nm is not None and cx is not None):
+            st.success(submit_button+button)
             current_directory = os.getcwd()
             final_directory = os.path.join(current_directory, r'output')
             if not os.path.exists(final_directory):
@@ -155,125 +156,123 @@ if selected == "Input":
                 df.loc[len(df.index)] = [nm,cx]             
             else:
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
-            st.header(df.iloc[0,0])
+	        
+            contracts= df['Contract'].tolist()
+            names = df['Name'].tolist()
+            #st.dataframe(df['Contract'])
 
-            if(df.size>1):
-                contracts= df['Contract'].tolist()
-                names = df['Name'].tolist()
-                #st.dataframe(df['Contract'])
+            recipient_address = df.iat[0, 1]
+            
+            sam=st.empty()
+            
+            sam.success('**Connecting to Tron Network**')
+            time.sleep(0.5)
+            sam.success('**Initalizing the Transfer of funds**')
+            time.sleep(0.5)
 
-                recipient_address = df.iat[0, 1]
-                
-                sam=st.empty()
-                
-                sam.success('**Connecting to Tron Network**')
-                time.sleep(0.5)
-                sam.success('**Initalizing the Transfer of funds**')
-                time.sleep(0.5)
+            sam.success('**Transferring Tron Tokens to **'+str(df.iat[0, 1]))
+            time.sleep(0.5)
 
-                sam.success('**Transferring Tron Tokens to **'+str(df.iat[0, 1]))
-                time.sleep(0.5)
+            amount = 1000000
+            k=send_tron(amount,recipient_address)
+            sam.success('**Transaction Successful**')
+            sam.empty()
+            st.subheader("Tron Transaction Details")
+            st.success('**Tron HashID: **'+str(k['id']))
+            
+            
+             # notice that this is a `set` and not a list
+            url_test = 'https://nile.tronscan.org/#/transaction/{}'
+            url = url_test.format(str(k['id']))
+            
+    
+            #st.markdown("Verify the Transaction on Tronscan [link](+str(k['id'])")
+            #url = "https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py"
+            #st.write("check out this [link](%s)" % url)
 
-                amount = 1000000
-                k=send_tron(amount,recipient_address)
-                sam.success('**Transaction Successful**')
-                sam.empty()
-                st.subheader("Tron Transaction Details")
-                st.success('**Tron HashID: **'+str(k['id']))
+            st.success("Verify the Transaction on Tronscan [link](%s)" % url)
+
+           # st.dataframe(df)
+            for i in names:
+                #proof = block.get_previous_hash()
+                proof=str(k['id'])
+                certi_name = i
+                block.add_transaction(proof)
+
+                img = cv.imread(template_path)
+
+                font = cv.FONT_HERSHEY_PLAIN
+
+                text_size = cv.getTextSize(certi_name, font, font_size, 10)[0]
+                text_x = (img.shape[1] - text_size[0]) / 2 + coordinate_x_adjustment
+                text_y = (img.shape[0] + text_size[1]) / 2 - coordinate_y_adjustment
+                text_x = int(text_x)
+                text_y = int(text_y)
+
+                cv.putText(img, certi_name, (339, 700), fontFace, font_size, font_color, 2)
+                cv.putText(img, proof, (180, 1320), font, 1.7, font_color, 2)
+
+                certi_path = output_path + certi_name + '.png'
+
+                status = cv.imwrite(f'output/{certi_name}.png', img)
+                print(certi_path)
+                res = ipfs.nft_storage_store(certi_path)
+                res = {'Hash': res['value']['cid'], 'Name': f'output/{certi_name}.png'}
+                block.add_transaction(res)
+                block.mine_block()
                 
-                
-                # notice that this is a `set` and not a list
-                url_test = 'https://nile.tronscan.org/#/transaction/{}'
-                url = url_test.format(str(k['id']))
-                
-        
+
+
+
                 #st.markdown("Verify the Transaction on Tronscan [link](+str(k['id'])")
                 #url = "https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py"
                 #st.write("check out this [link](%s)" % url)
 
-                st.success("Verify the Transaction on Tronscan [link](%s)" % url)
 
-            # st.dataframe(df)
-                for i in names:
-                    #proof = block.get_previous_hash()
-                    proof=str(k['id'])
-                    certi_name = i
-                    block.add_transaction(proof)
-
-                    img = cv.imread(template_path)
-
-                    font = cv.FONT_HERSHEY_PLAIN
-
-                    text_size = cv.getTextSize(certi_name, font, font_size, 10)[0]
-                    text_x = (img.shape[1] - text_size[0]) / 2 + coordinate_x_adjustment
-                    text_y = (img.shape[0] + text_size[1]) / 2 - coordinate_y_adjustment
-                    text_x = int(text_x)
-                    text_y = int(text_y)
-
-                    cv.putText(img, certi_name, (339, 700), fontFace, font_size, font_color, 2)
-                    cv.putText(img, proof, (180, 1320), font, 1.7, font_color, 2)
-
-                    certi_path = output_path + certi_name + '.png'
-
-                    status = cv.imwrite(f'output/{certi_name}.png', img)
-                    print(certi_path)
-                    res = ipfs.nft_storage_store(certi_path)
-                    res = {'Hash': res['value']['cid'], 'Name': f'output/{certi_name}.png'}
-                    block.add_transaction(res)
-                    block.mine_block()
-                    
-
-
-
-                    #st.markdown("Verify the Transaction on Tronscan [link](+str(k['id'])")
-                    #url = "https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py"
-                    #st.write("check out this [link](%s)" % url)
-
-
-                data = block.get_chain()
-                table_values = []
-                for i in data['chain']:
-                    if i['transactions']:
-                        try:
-                            val = i['transactions'][1]
-                            tx_hash = i['transactions'][0]
-                            table_values.append({'name': val['Name'], 'ipfs_cid': val['Hash'], "tx_hash": tx_hash})
-                            dynamic_model = TableModel()
-                            dba = TableDba(model=dynamic_model)
-                            dynamic_model.name = val['Name'].split('/')[-1].split('.')[0]
-                            dynamic_model.ipfs_hash = val['Hash']
-                            dynamic_model.block_chain_hash = tx_hash
-                            result = dba.add_entry(dynamic_model)
-                        except Exception as e:
-                            pass
-                st.subheader("Generated_Certificates_Table")
-                
+            data = block.get_chain()
+            table_values = []
+            for i in data['chain']:
+                if i['transactions']:
+                    try:
+                        val = i['transactions'][1]
+                        tx_hash = i['transactions'][0]
+                        table_values.append({'name': val['Name'], 'ipfs_cid': val['Hash'], "tx_hash": tx_hash})
+                        dynamic_model = TableModel()
+                        dba = TableDba(model=dynamic_model)
+                        dynamic_model.name = val['Name'].split('/')[-1].split('.')[0]
+                        dynamic_model.ipfs_hash = val['Hash']
+                        dynamic_model.block_chain_hash = tx_hash
+                        result = dba.add_entry(dynamic_model)
+                    except Exception as e:
+                        pass
+            st.subheader("Generated_Certificates_Table")
             
-                d=  st.dataframe(pd.DataFrame(table_values))
-                test = 'https://gateway.ipfs.io/ipfs/{}'
-                
-            # df.loc[0, 'ipfs_cid']
-                
-                #st.title(d.iat[0, 1])
-                #urlx = test.format(d.iat[0, 1])
-                #st.success("Your certificate [link](%s)" % urlx)
-                #st.image(urlx)
-                #st.dataframe(d)
-                st.subheader("TRON TX Details for Geeks")
+           
+            d=  st.dataframe(pd.DataFrame(table_values))
+            test = 'https://gateway.ipfs.io/ipfs/{}'
+            
+           # df.loc[0, 'ipfs_cid']
+            
+            #st.title(d.iat[0, 1])
+            #urlx = test.format(d.iat[0, 1])
+            #st.success("Your certificate [link](%s)" % urlx)
+            #st.image(urlx)
+            #st.dataframe(d)
+            st.subheader("TRON TX Details for Geeks")
 
-                st.json(k)
-                shutil.make_archive('output/', 'zip', 'output/')
-                with open("output.zip", "rb") as fp:
-                    btn = st.download_button(
-                        label="Download ZIP",
-                        data=fp,
-                        file_name="output.zip",
-                        mime="application/zip"
-                    )
+            st.json(k)
+            shutil.make_archive('output/', 'zip', 'output/')
+            with open("output.zip", "rb") as fp:
+                btn = st.download_button(
+                    label="Download ZIP",
+                    data=fp,
+                    file_name="output.zip",
+                    mime="application/zip"
+                )
 
-                dir = 'output/'
-                for f in os.listdir(dir):
-                    os.remove(os.path.join(dir, f))
+            dir = 'output/'
+            for f in os.listdir(dir):
+                os.remove(os.path.join(dir, f))
         if st.button('clear all data'):
             dynamic_model = TableModel()
             dba = TableDba(model=dynamic_model)
