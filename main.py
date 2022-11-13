@@ -148,14 +148,14 @@ if selected == "Input":
             coordinate_x_adjustment = 10
 	    
 	    
+           
+            
+            df = pd.read_excel(uploaded_file, engine='openpyxl')
             if(nm is not None and cx is not None):
 
                 COLUMN_NAMES=['Name','Contract']
                 df = pd.DataFrame(columns=COLUMN_NAMES)
-                df.loc[len(df.index)] = [nm,cx]             
-            
-            df = pd.read_excel(uploaded_file, engine='openpyxl')
-	        
+                df.loc[len(df.index)] = [nm,cx]  	        
             contracts= df['Contract'].tolist()
             names = df['Name'].tolist()
             #st.dataframe(df['Contract'])
