@@ -306,8 +306,8 @@ if selected == "Home":
                 text_x = int(text_x)
                 text_y = int(text_y)
 
-                cv.putText(img, certi_name, (339, 650), font, font_size, font_color, 2)
-                cv.putText(img, proof, (210, 1290), font, 2, font_color, 2)
+                cv.putText(img, certi_name, (339, 600), font, font_size, font_color, 2)
+                cv.putText(img, proof, (200, 1290), font, 2, font_color, 2)
 
                 certi_path = output_path + certi_name + '.png'
 
@@ -354,7 +354,7 @@ if selected == "Home":
             #urlx = test.format(d.iat[0, 1])
             #st.success("Your certificate [link](%s)" % urlx)
             #st.image(urlx)
-            st.dataframe(d)
+            #st.dataframe(d)
             st.subheader("TRON TX Details for Geeks")
 
             st.json(k)
