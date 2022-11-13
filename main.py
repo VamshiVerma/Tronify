@@ -314,7 +314,7 @@ if selected == "Verify":
             "chain": "goerli",
             "name": "ERC-721 NFT",
             "description": "NFT",
-            "file_url": final,
+            "file_url": str(final),
             "mint_to_address": wallet_address
         }
         headers = {
