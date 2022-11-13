@@ -34,13 +34,11 @@ client = Tron(network='nile')
 
 with st.sidebar.form(key='my_form'):
 	nm = st.text_input('Enter Name:')
-    	cx = ct.text_input('Enter Contract:')
+    	cx = st.text_input('Enter Contract:',key = "contr")
 	submit_button = st.form_submit_button(label='Go')
-	submit_button2 = cx.form_submit_button(label='Go')
 
 with st.sidebar.expander('Example Input'):
 	st.code('Name : Phil\n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
-
 
 
 
@@ -221,7 +219,8 @@ def authentication():
 
 
     
-if submit_button and submit_button2:
+if submit_button:
+	
 	st.header(nm)
 	st.header(cx)
     
