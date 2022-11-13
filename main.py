@@ -258,7 +258,9 @@ if selected == "Input":
             # df.loc[0, 'ipfs_cid']
                 fin = 'https://gateway.ipfs.io/ipfs/{}'
                 final = fin.format(um)
-		st.text(final)
+                
+                st.text(final)
+
                 #st.title(d.iat[0, 1])
                 #urlx = test.format(d.iat[0, 1])
                 #st.success("Your certificate [link](%s)" % urlx)
