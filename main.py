@@ -301,7 +301,6 @@ if selected == "Home":
                 img = cv.imread(template_path)
 
                 font = cv.FONT_HERSHEY_PLAIN
-		fot = cv.FONT_HERSHEY_SCRIPT_COMPLEX
 
                 text_size = cv.getTextSize(certi_name, font, font_size, 10)[0]
                 text_x = (img.shape[1] - text_size[0]) / 2 + coordinate_x_adjustment
