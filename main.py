@@ -237,7 +237,8 @@ if selected == "Home":
     if authentication_status:
         st.title("Upload XLSX with list of names")
         uploaded_file = st.file_uploader("Choose a file")
-
+        block = Blockchain()
+        block.mine_block()
         
         if uploaded_file is not None or (nm is not None and cx is not None):
             st.success(submit_button+button)
