@@ -134,7 +134,6 @@ if selected == "Home":
         block.mine_block()
         
         if uploaded_file is not None and (nm is not None and cx is not None):
-            st.success(submit_button+button)
             current_directory = os.getcwd()
             final_directory = os.path.join(current_directory, r'output')
             if not os.path.exists(final_directory):
@@ -157,7 +156,8 @@ if selected == "Home":
                 df.loc[len(df.index)] = [nm,cx]             
             else:
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
-	        
+	    
+	    st.header(df.size)
             contracts= df['Contract'].tolist()
             names = df['Name'].tolist()
             #st.dataframe(df['Contract'])
