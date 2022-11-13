@@ -226,7 +226,8 @@ def authentication():
     
 
 
-st.success(submit_button+button)
+st.success(submit_button)
+st.success(button)
 
     
 
