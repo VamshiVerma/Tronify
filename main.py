@@ -43,6 +43,13 @@ with st.sidebar.form(key='new'):
 with st.sidebar.expander('Example Input'):
 	st.code('Name : Phil\n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
 
+	
+	
+if submit_button:
+	st.header(nm)
+if button:
+	ct.header(cx)
+	
 # send some 'amount' of Tron to the 'wallet' address
 def send_tron(amount, wallet):
     try:
@@ -219,10 +226,7 @@ def authentication():
 
 
     
-if submit_button and button:
-	
-	st.header(nm)
-	ct.header(cx)
+
     
 if selected == "Home":
     # authentication_status = authentication()
