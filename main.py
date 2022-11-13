@@ -299,7 +299,8 @@ if selected == "Input":
                         "Authorization": "f3808be1-e81b-4d7f-942d-7969b074ec0b"
                     }
                     response = requests.request("POST", url, json=payload, headers=headers)
-                    print(response.text)
+                    st.success("Minted ERC-721 NFT Ethscan [link](%s)" % response['transaction_external_url'])
+
                     st.json(response.text)
 
 
