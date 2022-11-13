@@ -157,7 +157,7 @@ if selected == "Input":
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
             st.header(df.iloc[0,0])
 
-            if(df.empty == False):
+            if(df.size>1):
                 contracts= df['Contract'].tolist()
                 names = df['Name'].tolist()
                 #st.dataframe(df['Contract'])
