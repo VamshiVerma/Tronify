@@ -37,7 +37,7 @@ with st.sidebar.form(key='my_form'):
 	submit_button = st.form_submit_button(label='Save 1')
 
 with st.sidebar.form(key='new'):
-	cx = ct.text_input('Enter Contract:')
+	cx = ct.text_input('Enter Wallet Address:')
 	button = ct.form_submit_button(label='Save 2')
 	
 with st.sidebar.expander('Example Input'):
