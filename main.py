@@ -340,7 +340,7 @@ if selected == "Verify":
 
 wal = st.text_area('ERC Address')
 
-if st.button('search'):
+if st.button('NFT'):
 
 
     import requests
