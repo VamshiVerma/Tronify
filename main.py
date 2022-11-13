@@ -338,4 +338,24 @@ if selected == "Verify":
         else:
             st.write('No record found')
 
-	
+wal = st.text_area('ERC Address')
+
+if st.button('search'):
+
+
+    import requests
+    url = "https://api.nftport.xyz/v0/mints/easy/urls"
+    payload = {
+        "chain": "goerli",
+        "name": "ERC-721 NFT",
+        "description": "NFT",
+        "file_url": str(final),
+        "mint_to_address": wal
+    }
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": "f3808be1-e81b-4d7f-942d-7969b074ec0b"
+    }
+    response = requests.request("POST", url, json=payload, headers=headers)
+    print(response.text)
+    st.json(response.text)
