@@ -5,6 +5,8 @@ import requests
 from database import TableDba, create_db, TableModel, AccountDba, Account
 from certificate import Blockchain
 import streamlit as st
+import streamlit as ct
+
 from streamlit_option_menu import option_menu
 from ipfs_api import IPFSApi
 # import streamlit_authenticator as stauth
@@ -34,9 +36,9 @@ with st.sidebar.form(key='my_form'):
 	nm = st.text_input('Enter Name:')
     	#cx = st.text_input('Enter Contract:')
 	submit_button = st.form_submit_button(label='Go')
-with st.sidebar.form(key='my_form2'):
-    	cx = st.text_input('Enter Contract:')
-	submit_button2 = st.form_submit_button(label='Go')
+with ct.sidebar.form(key='my_form2'):
+    	cx = ct.text_input('Enter Contract:')
+	submit_button2 = ct.form_submit_button(label='Go')
 with st.sidebar.expander('Example Input'):
 	st.code('Name : Phil\n'+'Contract : THh2BTPHFT22vEVFqcbu1PEMbP5GsqNpqG')
 
