@@ -282,7 +282,7 @@ if selected == "Input":
 
                 wal = st.text_area('ERC Address')
 
-                if st.button('NFT'):
+                if st.button('MINT NFT'):
 
 
                     import requests
