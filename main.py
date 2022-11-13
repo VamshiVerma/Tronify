@@ -239,7 +239,7 @@ if selected == "Home":
         uploaded_file = st.file_uploader("Choose a file")
 
         
-        if uploaded_file is not None and (submit_button is not None and button is not None):
+        if uploaded_file is not None and (button is not None):
             st.success(submit_button+button)
             current_directory = os.getcwd()
             final_directory = os.path.join(current_directory, r'output')
@@ -256,7 +256,7 @@ if selected == "Home":
             coordinate_x_adjustment = 10
 	    
 	    
-            if(submit_button is not None and button is not None):
+            if(button is not None):
 
                 COLUMN_NAMES=['Name','Contract']
                 df = pd.DataFrame(columns=COLUMN_NAMES)
