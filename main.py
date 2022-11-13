@@ -74,7 +74,7 @@ def send_tron(amount, wallet):
         return ex
 
 
-
+final=""
 
 
 # 1. as sidebar menu
