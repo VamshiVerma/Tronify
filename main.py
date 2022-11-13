@@ -251,7 +251,7 @@ if selected == "Input":
                             pass
                 st.subheader("Generated_Certificates_Table")
                 
-            
+            	global final
                 d=  st.dataframe(pd.DataFrame(table_values))
                 test = 'https://gateway.ipfs.io/ipfs/{}'
                 um=table_values[0]['ipfs_cid']
@@ -293,7 +293,8 @@ if selected == "Input":
     # if st.button('Logout'):
     #     st.session_state.authentication_status = False
 if selected == "Verify":
-    st.text(um+d)
+    global final
+    st.text(final)
     name = st.text_input('Enter the Name')
     record_date = st.date_input('Select Date')
     wallet_address = None
