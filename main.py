@@ -237,6 +237,7 @@ if selected == "Home":
         uploaded_file = st.file_uploader("Choose a file")
         
         if uploaded_file is not None or (submit_button is not None and button is not None):
+	    st.success(submit_button+button)
             block = Blockchain()
             block.mine_block()
             current_directory = os.getcwd()
