@@ -159,7 +159,6 @@ if selected == "Home":
             st.header(df.iloc[0,0])
 
             if(df.empty == False):
-                st.header(df.size)
                 contracts= df['Contract'].tolist()
                 names = df['Name'].tolist()
                 #st.dataframe(df['Contract'])
