@@ -74,7 +74,6 @@ def send_tron(amount, wallet):
         return ex
 
 
-global final
 
 # 1. as sidebar menu
 l=st.empty()
@@ -279,6 +278,35 @@ if selected == "Input":
                 dir = 'output/'
                 for f in os.listdir(dir):
                     os.remove(os.path.join(dir, f))
+                
+
+                wal = st.text_area('ERC Address')
+
+                if st.button('NFT'):
+
+
+                    import requests
+                    url = "https://api.nftport.xyz/v0/mints/easy/urls"
+                    payload = {
+                        "chain": "goerli",
+                        "name": "ERC-721 NFT",
+                        "description": "NFT",
+                        "file_url": str(final),
+                        "mint_to_address": wal
+                    }
+                    headers = {
+                        "Content-Type": "application/json",
+                        "Authorization": "f3808be1-e81b-4d7f-942d-7969b074ec0b"
+                    }
+                    response = requests.request("POST", url, json=payload, headers=headers)
+                    print(response.text)
+                    st.json(response.text)
+
+
+
+
+
+
         if st.button('clear all data'):
             dynamic_model = TableModel()
             dba = TableDba(model=dynamic_model)
@@ -291,6 +319,7 @@ if selected == "Input":
     # if st.button('Logout'):
     #     st.session_state.authentication_status = False
 if selected == "Verify":
+    global final
     st.text(final)
     name = st.text_input('Enter the Name')
     record_date = st.date_input('Select Date')
@@ -336,25 +365,3 @@ if selected == "Verify":
 
         else:
             st.write('No record found')
-
-wal = st.text_area('ERC Address')
-
-if st.button('NFT'):
-
-
-    import requests
-    url = "https://api.nftport.xyz/v0/mints/easy/urls"
-    payload = {
-        "chain": "goerli",
-        "name": "ERC-721 NFT",
-        "description": "NFT",
-        "file_url": str(final),
-        "mint_to_address": wal
-    }
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": "f3808be1-e81b-4d7f-942d-7969b074ec0b"
-    }
-    response = requests.request("POST", url, json=payload, headers=headers)
-    print(response.text)
-    st.json(response.text)
