@@ -9,3 +9,4 @@ streamlit_option_menu==0.3.2
 tronpy
 git+https://github.com/nftstorage/python-client.git
 selenium==4.2.0
+webdriver-manager
