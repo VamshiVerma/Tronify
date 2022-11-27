@@ -260,21 +260,6 @@ if selected == "Input":
 
 
 
-                from selenium import webdriver
-                from webdriver_manager.chrome import ChromeDriverManager
-                from selenium.webdriver.common.by import By
-                import time
-
-                driver = webdriver.Chrome(ChromeDriverManager().install()) 
-
-                driver.get("https://natoboram.gitlab.io/public-gateway-cacher/")
-                k=driver.find_element(By.XPATH,'/html/body/app-root/app-pages/div/form[1]/mat-form-field/div/div[1]/div/input')
-                time.sleep(2)
-                st.success("Caching the IPFS Data")
-
-                k.send_keys(um)
-                driver.find_element(By.XPATH,'/html/body/app-root/app-pages/div/form[1]/button').click()
-
 
                 #st.title(d.iat[0, 1])
                 #urlx = test.format(d.iat[0, 1])
