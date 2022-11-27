@@ -286,8 +286,7 @@ if selected == "Input":
                 wal = st.text_area('ERC Address')
 
                 if st.button('MINT NFT'):
-
-
+		    st.warning(final)
                     import requests
                     url = "https://api.nftport.xyz/v0/mints/easy/urls"
                     payload = {
