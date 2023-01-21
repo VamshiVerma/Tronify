@@ -79,7 +79,7 @@ def send_tron(amount, wallet):
 l=st.empty()
 l.success("Please Enter Input from Sidebar and Click Input Tab")
 
-selected = option_menu("TRONIFY: Authentic Certificate Generator", ["Input", 'Verify'],
+selected = option_menu("PROVSPARK: Authentic Certificate Generator", ["Input", 'Verify'],
                        icons=['house', 'gear'], menu_icon="cast", default_index=1, orientation="horizontal")
 create_db()
 acc_dba = AccountDba()
