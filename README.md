@@ -31,6 +31,6 @@ Steps:
 * Connect your wallet to opensea testnet
 * Open the Metamask wallet and go to NFTs. Your Tron Verified Certificate is in your mobile wallet as NFT!
 
-Sample Result:
+# Sample Result:
 [Click Me](https://testnets.opensea.io/assets/goerli/0xb91876637e407b75fc5da1a81114db68f4851932/3983)
 ![](https://i.seadn.io/gae/NsimJ69ngDGsLchDBbRH17Kt_rxebGqcNPP9gA0dfzxxVstoIC0d1LExgr5Ht6ieuDvW0DZ_LcDb0KUFoxJKF-I_lfICqU_tCvHFng?auto=format&w=1000)
